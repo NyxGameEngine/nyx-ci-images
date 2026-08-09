@@ -17,6 +17,7 @@ RUN pacman-key --init \
         ninja \
         git \
         pkgconf \
+        gtest \
         # Vulkan SDK
         vulkan-headers \
         vulkan-icd-loader \

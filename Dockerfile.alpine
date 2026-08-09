@@ -9,6 +9,7 @@ RUN apk add --no-cache \
     cmake \
     ninja \
     git \
+    gtest-dev \
     pkgconf \
     # Vulkan SDK
     vulkan-headers \
