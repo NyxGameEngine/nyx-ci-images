@@ -1,0 +1,39 @@
+FROM archlinux/archlinux:base
+
+# YYYY/MM/DD format
+ARG PACMAN_DATE=2026/08/08
+
+# comment out community repo and pin mirrorlist to the passed date
+RUN echo "Server = https://archive.archlinux.org/repos/${PACMAN_DATE}/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
+RUN sed -i '/^\[community\]/,/^$/s/^/#/' /etc/pacman.conf
+
+RUN pacman-key --init \
+    && pacman-key --populate archlinux \
+    && pacman -Syyu --noconfirm \
+    && pacman -S --noconfirm --needed \
+        clang \
+        llvm \
+        cmake \
+        ninja \
+        git \
+        pkgconf \
+        # Vulkan SDK
+        vulkan-headers \
+        vulkan-icd-loader \
+        vulkan-validation-layers \
+        glslang \
+        spirv-tools \
+        vulkan-swrast \
+    && pacman -Scc --noconfirm
+
+RUN groupadd nyx && useradd -g nyx -M -s /bin/bash nyx
+RUN mkdir /nyx && chown nyx:nyx /nyx && chmod 770 /nyx
+
+COPY --chown=nyx:nyx ./entrypoint.sh /nyx/entrypoint.sh
+RUN chmod +x /nyx/entrypoint.sh
+
+WORKDIR /nyx
+USER nyx
+
+ENTRYPOINT ["/nyx/entrypoint.sh"]
+CMD ["/bin/bash"]

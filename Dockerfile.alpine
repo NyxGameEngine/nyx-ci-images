@@ -1,0 +1,32 @@
+FROM alpine:3.24
+
+RUN apk add --no-cache \
+    bash \
+    clang \
+    llvm \
+    musl-dev \
+    libc++-dev \
+    cmake \
+    ninja \
+    git \
+    pkgconf \
+    # Vulkan SDK
+    vulkan-headers \
+    vulkan-loader-dev \
+    vulkan-validation-layers \
+    spirv-tools \
+    glslang \
+    # Software rasterizer
+    mesa-vulkan-swrast
+
+RUN addgroup nyx && adduser -D -G nyx -s /bin/bash nyx
+RUN mkdir /nyx && chown -R nyx:nyx /nyx && chmod 770 /nyx 
+
+COPY --chown=nyx:nyx ./entrypoint.sh /nyx/entrypoint.sh
+RUN chmod +x /nyx/entrypoint.sh
+
+WORKDIR /nyx
+USER nyx
+
+ENTRYPOINT [ "/nyx/entrypoint.sh" ]
+CMD [ "/bin/bash" ]
