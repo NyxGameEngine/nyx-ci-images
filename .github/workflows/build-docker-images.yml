@@ -67,7 +67,7 @@ jobs:
               with:
                 images: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image_name }}
                 tags: |
-                    type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+                    type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
                     type=sha,prefix=sha-,format=short
                     type=ref,event=branch
                     type=semver,pattern={{version}}
