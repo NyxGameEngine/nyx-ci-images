@@ -11,6 +11,7 @@ RUN apk add --no-cache \
     git \
     gtest-dev \
     pkgconf \
+    python3 \
     # Vulkan SDK
     vulkan-headers \
     vulkan-loader-dev \
