@@ -12,8 +12,11 @@ RUN pacman-key --init \
     && pacman -Syyu --noconfirm \
     && pacman -S --noconfirm --needed \
         clang \
-        llvm \
         lld \
+        llvm \
+        compiler-rt \
+        libc++ \
+        libc++abi \
         cmake \
         ninja \
         git \

@@ -6,10 +6,9 @@ RUN apk add --no-cache \
     lld \
     llvm \
     compiler-rt \
-    binutils \
-    musl-dev \
     libc++-dev \
-    libstdc++-dev \
+    musl-dev \
+    binutils \
     cmake \
     ninja \
     git \
