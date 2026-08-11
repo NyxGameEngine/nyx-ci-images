@@ -13,6 +13,7 @@ RUN pacman-key --init \
     && pacman -S --noconfirm --needed \
         clang \
         llvm \
+        lld \
         cmake \
         ninja \
         git \

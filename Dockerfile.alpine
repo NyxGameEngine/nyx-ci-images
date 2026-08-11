@@ -3,9 +3,11 @@ FROM alpine:3.24
 RUN apk add --no-cache \
     bash \
     clang \
+    lld \
     llvm \
     musl-dev \
     libc++-dev \
+    libstdc++-dev \
     cmake \
     ninja \
     git \
