@@ -5,6 +5,7 @@ RUN apk add --no-cache \
     clang \
     lld \
     llvm \
+    compiler-rt \
     binutils \
     musl-dev \
     libc++-dev \
