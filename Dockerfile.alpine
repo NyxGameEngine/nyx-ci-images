@@ -2,13 +2,11 @@ FROM alpine:3.24
 
 RUN apk add --no-cache \
     bash \
+    build-base \
+    linux-headers \
     clang \
     lld \
     llvm \
-    llvm-dev \
-    compiler-rt \
-    libc++-dev \
-    llvm-libunwind \
     musl-dev \
     binutils \
     cmake \
